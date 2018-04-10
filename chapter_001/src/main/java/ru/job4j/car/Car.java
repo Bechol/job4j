@@ -1,4 +1,4 @@
-package ru.job4j.calculator;
+package ru.job4j.car;
 /**
  * Класс,определяет сколько автомобиль проедет километров с учетом заправки.
  * @author Oleg Bech (oleg071984@gmail.com)

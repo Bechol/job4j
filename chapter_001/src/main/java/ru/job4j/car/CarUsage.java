@@ -1,4 +1,4 @@
-package ru.job4j.calculator;
+package ru.job4j.car;
 /**
  * Класс выводит в консоль информацию о воможности поездки к бабушке.
  * @author Oleg Bech (oleg071984@gmail.com)
