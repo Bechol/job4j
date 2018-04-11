@@ -14,8 +14,7 @@ public class Converter {
      * конвертация рублей в доллары.
      */
     public int rurToUsd(int rur) {
-        int usd;
-        usd = rur / cursUsd;
+        int usd = rur / cursUsd;
         return usd;
     }
     /**
@@ -24,8 +23,7 @@ public class Converter {
      * конвертация долларов в рубли.
      */
     public int usdToRur(int usd) {
-        int rur;
-        rur = usd * cursUsd;
+        int rur = usd * cursUsd;
         return rur;
     }
 
@@ -35,8 +33,7 @@ public class Converter {
      * конвертация рублей в евро.
      */
     public int rurToEur(int rur) {
-        int eur;
-        eur = rur / cursEur;
+        int eur = rur / cursEur;
         return eur;
     }
     /**
@@ -45,8 +42,7 @@ public class Converter {
      * конвертация долларов в рубли.
      */
     public int eurToRur(int eur) {
-        int rur;
-        rur = eur * cursEur;
+        int rur = eur * cursEur;
         return rur;
     }
 }
