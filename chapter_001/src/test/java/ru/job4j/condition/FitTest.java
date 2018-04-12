@@ -1,8 +1,8 @@
-package ru.job4j.calculator;
+package ru.job4j.condition;
 import org.junit.Test;
+import ru.job4j.calculator.Fit;
 
 import static org.hamcrest.Matchers.closeTo;
-import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
 /**
