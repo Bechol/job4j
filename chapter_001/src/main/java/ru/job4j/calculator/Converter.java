@@ -6,16 +6,15 @@ package ru.job4j.calculator;
  * @version 1.0
  */
 public class Converter {
-    private final int cursUsd = 60;
-    private final int cursEur = 70;
+    private int cursUsd = 60;
+    private int cursEur = 70;
     /**
      * Method rurToUsd.
      * @param rur количество рублей для конвертации.
      * конвертация рублей в доллары.
      */
     public int rurToUsd(int rur) {
-        int usd = rur / cursUsd;
-        return usd;
+        return rur / cursUsd;
     }
     /**
      * Method usdToRur.
@@ -23,8 +22,7 @@ public class Converter {
      * конвертация долларов в рубли.
      */
     public int usdToRur(int usd) {
-        int rur = usd * cursUsd;
-        return rur;
+        return usd * cursUsd;
     }
 
     /**
@@ -33,8 +31,7 @@ public class Converter {
      * конвертация рублей в евро.
      */
     public int rurToEur(int rur) {
-        int eur = rur / cursEur;
-        return eur;
+        return rur / cursEur;
     }
     /**
      * Method eurToRur.
@@ -42,7 +39,6 @@ public class Converter {
      * конвертация долларов в рубли.
      */
     public int eurToRur(int eur) {
-        int rur = eur * cursEur;
-        return rur;
+        return eur * cursEur;
     }
 }
