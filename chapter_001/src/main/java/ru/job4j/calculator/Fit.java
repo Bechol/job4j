@@ -14,8 +14,6 @@ public class Fit {
      */
     public double manWeight(double height) {
         return (height - 100.0) * 1.15;
-        //double iManWeight = (height - 100.0) * 1.15;
-        //return iManWeight;
     }
     /**
      * Method womanWeight. Расчет идеального веса для женщины.
@@ -25,7 +23,5 @@ public class Fit {
      */
     public double womanWeight(double height) {
         return (height - 110.0) * 1.15;
-        //double iWomanWeight = (height - 110.0) * 1.15;
-        //return iWomanWeight;
     }
 }
