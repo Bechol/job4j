@@ -25,12 +25,12 @@ private int summ;
      * реализация с помощью цикла for.
      */
     public int addFor(int start, int finish) {
-        int sum, i;
-        for (sum = 0, i = start; i <= finish; i++) {
+        int i;
+        for (summ = 0, i = start; i <= finish; i++) {
             if (i % 2 == 0) {
-                sum += i;
+                summ += i;
             }
         }
-        return sum;
+        return summ;
     }
 }
