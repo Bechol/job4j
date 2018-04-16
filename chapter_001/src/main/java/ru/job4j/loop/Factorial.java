@@ -7,20 +7,16 @@ package ru.job4j.loop;
  */
 public class Factorial {
     //поля класса.
-    private int result;
+    private int result = 1;
     private int i;
     /**
      * Method run.
      * @param n число, для которого вычисляется факториал.
      */
     public int run(int n) {
-        if (n == 0) {
-            result = 1;
-        } else {
-            for (result = 1, i = 1; i <= n; i++) {
+            for (int i = result; i <= n; i++) {
                 result *= i;
             }
-        }
         return result;
     }
 }
