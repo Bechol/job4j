@@ -19,7 +19,7 @@ public class SquareTest {
         int bound = 3;
         Square square = new Square();
         int[] rst = square.calculate(bound);
-        int[] expect = new int[] {0, 1, 4};
+        int[] expect = new int[] {1, 4, 9};
         assertThat(rst, is(expect));
     }
     /**
@@ -35,7 +35,7 @@ public class SquareTest {
         for (int i = 0; i != rst.length; i++) {
             sumRst += rst[i];
         }
-        int[] expect = new int[] {0, 1, 4};
+        int[] expect = new int[] {1, 4, 9};
         for (int i = 0; i != expect.length; i++) {
             sumExpect += expect[i];
         }
@@ -52,7 +52,7 @@ public class SquareTest {
         Square square = new Square();
         int[] rst = square.calculate(bound);
         rstThree = rst[2];
-        int[] expect = new int[] {0, 1, 4};
+        int[] expect = new int[] {1, 4, 9};
         expectThree = expect[2];
         assertThat(rstThree, is(expectThree));
     }
