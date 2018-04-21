@@ -26,13 +26,13 @@ public class FindLoopTest {
      * Test не находит значение.
      */
     @Test
-    public void whenDoNotFindElementThenFalse(){
+    public void whenDoNotFindElementThenFalse() {
         boolean x = false;
         FindLoop find = new FindLoop();
         int[] input = new int[] {5, 10, 3};
         int value = 31;
         int result = find.indexOf(input, value);
-        if (result == -1){
+        if (result == -1) {
             x = true;
         }
         boolean expect = true;
