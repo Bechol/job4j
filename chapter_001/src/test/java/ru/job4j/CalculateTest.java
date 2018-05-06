@@ -17,15 +17,10 @@ public class CalculateTest {
 * Test echo.
 */ @Test
 public void whenTakeNameThenTreeEchoPlusName() {
-	//Задаем главныый параметр
     String input = "Oleg Bech";
-	//Ожидаемый результат работы класса Calculate
-    String expect = "Echo, echo, echo : Oleg Bech"; 
-	//Создание нового объекта.
+    String expect = "Echo, echo, echo : Oleg Bech";
     Calculate calc = new Calculate();
-	//Выполнение метода echo с параметром input и запись ее в переменную result.
     String result = calc.echo(input);
-	//Сравнение значений result и expect
     assertThat(result, is(expect));
 }
  

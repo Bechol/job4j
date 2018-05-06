@@ -1,12 +1,9 @@
 package ru.job4j.condition;
 
 public class Triangle {
-    //поля класса.
     private Point a;
     private Point b;
     private Point c;
-
-    //конструктор класса.
     public Triangle(Point a, Point b, Point c) {
         this.a = a;
         this.b = b;
@@ -33,19 +30,12 @@ public class Triangle {
      * @return Вернуть прощадь, если треугольник существует или -1, если треугольника нет.
      */
     public double area() {
-        //начальное значение площади.
         double rsl = -1;
-        //длина стороны ab.
         double ab = this.a.distanceTo(b);
-        //длина стороны ac.
         double ac = this.a.distanceTo(c);
-        //длина стороны bc.
         double bc = this.b.distanceTo(c);
-        //вычисление полупериметра.
         double p = this.period(ab, ac, bc);
-        //проверка возможности построения треугольника.
         if (this.exist(ab, ac, bc)) {
-            //формула Герона для вычисления площади треугольника.
             rsl = Math.sqrt(p * (p - ab) * (p - ac) * (p - bc));
             System.out.println("Площадь треугольника: " + rsl);
         } else {

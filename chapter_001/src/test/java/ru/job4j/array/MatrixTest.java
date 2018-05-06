@@ -30,9 +30,9 @@ public class MatrixTest {
     @Test
     public void wheni5ThenSum270() {
         Matrix matrix = new Matrix();
-        int size = 9; //размер таблицы.
-        int resultSum = 0; //результат сложения элементов 5-ой строки.
-        int testSum = 270; //проверочное число.
+        int size = 9;
+        int resultSum = 0;
+        int testSum = 270;
         int[][] table = matrix.multiple(size);
         for (int j = 0; j < size; j++) {
             resultSum += table[5][j];
@@ -45,12 +45,12 @@ public class MatrixTest {
     @Test
     public void whenj5ThenArrayOk() {
         Matrix matrix = new Matrix();
-        int size = 9; //размер таблицы.
-        int[] resultArray = {6, 12, 18, 24, 30, 36, 42, 48, 54}; //проверочный массив.
+        int size = 9;
+        int[] resultArray = {6, 12, 18, 24, 30, 36, 42, 48, 54};
         int[] testArray = new int[size];
         int[][] table = matrix.multiple(size);
         for (int i = 0; i < size; i++) {
-            testArray[i] = table[i][5]; //заполнение массива элементами столбца с идексом 5.
+            testArray[i] = table[i][5];
         }
         assertThat(resultArray, is(testArray));
 
