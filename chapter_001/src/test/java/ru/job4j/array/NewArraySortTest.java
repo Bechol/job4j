@@ -37,4 +37,16 @@ public class NewArraySortTest {
         assertThat(resultSum, is(expextedSum));
 
     }
+    /**
+     * Test сравнение двух массивов.
+     */
+    @Test
+    public void whenFirstArrayIs153AndSecondArrayIs624ThenResultArrayIs123456() {
+        int[] arrFirst = {3, 1, 89, 115, 26, 174, 25};
+        int[] arrSecond = {44, 29, 51};
+        int[] expectedArray = {1, 3, 25, 26, 29, 44, 51, 89, 115, 174};
+        NewArraySort arraySortTest = new NewArraySort();
+        int[] resultArray = arraySortTest.resultArraySort(arrFirst, arrSecond);
+        assertThat(resultArray, is(expectedArray));
+    }
 }
