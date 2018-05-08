@@ -8,26 +8,34 @@ public class Logic3T {
     }
 
     public boolean isWinnerX() {
-        boolean result = false;
+        boolean result = true;
         for (int row = 0; row < this.table.length; row++) {
+            result = true;
             for (int cell = 0; cell < this.table.length - 1; cell++) {
-                if (this.table[row][cell].hasMarkX() && this.table[row][cell + 1].hasMarkX()) {
-                    result = true;
+                if (!(this.table[row][cell].hasMarkX() && this.table[row][cell + 1].hasMarkX())) {
+                    result = false;
                     break;
                 }
+            }
+            if (result) {
+                break;
             }
         }
         return result;
     }
 
     public boolean isWinnerO() {
-        boolean result = false;
+        boolean result = true;
         for (int row = 0; row < this.table.length; row++) {
+            result = true;
             for (int cell = 0; cell < this.table.length - 1; cell++) {
-                if (this.table[row][cell].hasMarkO() && this.table[row][cell + 1].hasMarkO()) {
-                    result = true;
+                if (!(this.table[row][cell].hasMarkO() && this.table[row][cell + 1].hasMarkO())) {
+                    result = false;
                     break;
                 }
+            }
+            if (result) {
+                break;
             }
         }
         return result;
