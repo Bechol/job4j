@@ -1,5 +1,6 @@
 package convert;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -31,5 +32,23 @@ public class ConvertList2Array {
                     }
             }
         return array;
+    }
+
+    /**
+     * Метод convert.
+     * Конвертация листа массивов в один лист Integer
+     * @param list
+     * @return лист.
+     */
+    public List<Integer> convert(List<int[]> list) {
+        List<Integer> bigList = new ArrayList<>();
+        int cnt = 0;
+        for (int[] array : list) {
+            for (int i = 0; i < array.length; i++) {
+                bigList.add(cnt, array[i]);
+                cnt++;
+            }
+        }
+        return bigList;
     }
 }
