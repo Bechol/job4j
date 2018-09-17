@@ -1,6 +1,5 @@
-package covnert;
+package convert;
 
-import covert.ConvertList2Array;
 import org.junit.Test;
 
 import java.util.Arrays;
