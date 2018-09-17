@@ -1,4 +1,4 @@
-package list2map;
+package listtomap;
 
 /**
  * Класс User.
