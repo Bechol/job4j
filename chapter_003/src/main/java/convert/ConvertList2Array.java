@@ -44,8 +44,8 @@ public class ConvertList2Array {
         List<Integer> bigList = new ArrayList<>();
         int cnt = 0;
         for (int[] array : list) {
-            for (int i = 0; i < array.length; i++) {
-                bigList.add(cnt, array[i]);
+            for (int anArray : array) {
+                bigList.add(cnt, anArray);
                 cnt++;
             }
         }
