@@ -28,4 +28,36 @@ public class SortUserTest {
         assertThat(result, is(expect));
     }
 
+    @Test
+    public void whenThreeUsersWithDifferentNameAndAge() {
+        User urgentUser = new User("Andrey", 31);
+        User lowerUser = new User("Bob", 31);
+        User middleUser = new User("Andrey", 65);
+        list.add(lowerUser);
+        list.add(urgentUser);
+        list.add(middleUser);
+        List<User> result = sortUser.sortByAllFields(list);
+        List<User> expect = new ArrayList<>();
+        expect.add(urgentUser);
+        expect.add(middleUser);
+        expect.add(lowerUser);
+        assertThat(result, is(expect));
+    }
+
+    @Test
+    public void whenThreeUsersWithDifferentNameLength() {
+        User urgentUser = new User("Andrey", 31);
+        User lowerUser = new User("Bob", 31);
+        User middleUser = new User("Halk", 65);
+        list.add(lowerUser);
+        list.add(urgentUser);
+        list.add(middleUser);
+        List<User> result = sortUser.sortNameLength(list);
+        List<User> expect = new ArrayList<>();
+        expect.add(lowerUser);
+        expect.add(middleUser);
+        expect.add(urgentUser);
+        assertThat(result, is(expect));
+    }
+
 }

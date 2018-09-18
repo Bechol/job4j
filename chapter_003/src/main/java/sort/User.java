@@ -9,6 +9,9 @@ package sort;
  */
 public class User implements Comparable<User> {
     private String name;
+
+
+
     private int age;
 
     /**
@@ -52,5 +55,14 @@ public class User implements Comparable<User> {
      */
     public int getAge() {
         return age;
+    }
+
+    /**
+     * Геттер getName().
+     * Вывовод имени пользователя.
+     * @return имя пользователя.
+     */
+    public String getName() {
+        return name;
     }
 }
