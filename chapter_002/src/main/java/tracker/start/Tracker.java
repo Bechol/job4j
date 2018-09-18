@@ -39,17 +39,15 @@ public class Tracker {
 	/**
 	* Метод delete(String id).
 	* Удаление заявки по id.
-	 * Циклом for each проходим по списку items и при совпадении id, удаляем заявку.
 	* @param id Уникальный индетификатор заявки.
 	*/
 	public void delete(String id) {
-		for (Item item : items) {
-			if (item.getId().equals(id)) {
-				items.remove(items.indexOf(item));
-				break;
-			}
-		}
-
+        for (int i = 0; i < items.size(); i++) {
+            if (items.get(i).getId().equals(id)) {
+                items.remove(i);
+                break;
+            }
+        }
 	}
 	
 	/**
