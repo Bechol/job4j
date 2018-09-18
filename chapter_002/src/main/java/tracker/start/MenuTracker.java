@@ -2,6 +2,7 @@ package tracker.start;
 
 import tracker.models.*;
 import java.util.*;
+import java.util.List;
 
 /**
 * Внешний класс EditItem.
@@ -9,13 +10,12 @@ import java.util.*;
 */
 class EditItem extends BaseAction {
 		
-	public EditItem(int key, String name) {
+	EditItem(int key, String name) {
 		super(key, name);
 	}
 		
 	@Override
 	public void execute(Input input, Tracker tracker) {
-		System.out.println("");
 		System.out.println("--------------<ITEM EDIT>--------------");
 		String id = input.ask("Please, enter the task's id:");
 		Item item = tracker.findById(id);
@@ -24,16 +24,13 @@ class EditItem extends BaseAction {
 			System.out.println(
 					String.format("%s. %s, %s", item.getId(), item.getName(), item.getDescription())
 				);
-			System.out.println("");
 			System.out.println("---------------- Etering new data -------------------");
 			String newName = input.ask("Please, enter the task's new name: ");
 			String newDesc = input.ask("Please, enter the task's new desc: ");
 			tracker.replace(id, newName, newDesc);
 			System.out.println("--------------<END OF EDITING>--------------");
-			System.out.println("");
 		} else {
 			System.out.println("The task with the specified id ISN'T FOUND!");
-			System.out.println("");
 		}
 	}
 }
@@ -44,13 +41,12 @@ class EditItem extends BaseAction {
 */
 class FindItemById extends BaseAction {
 	
-	public FindItemById(int key, String name) {
+	FindItemById(int key, String name) {
 		super(key, name);
 	}
 	
 	@Override
 	public void execute(Input input, Tracker tracker) {
-		System.out.println("");
 		System.out.println("------------<FIND ITEM BY ID>--------------");
 		String id = input.ask("Please, enter the task's id:");
 		Item item = tracker.findById(id);
@@ -60,10 +56,8 @@ class FindItemById extends BaseAction {
 					String.format("%s. %s, %s", item.getId(), item.getName(), item.getDescription())
 				);
 			System.out.println("---------------------- * * * -----------------------");
-			System.out.println("");
 		} else {
 			System.out.println("The task with the specified id ISN'T FOUND!");
-			System.out.println("");
 		}
 	}
 }
@@ -74,15 +68,27 @@ class FindItemById extends BaseAction {
 */
 class FindItemByName extends BaseAction {
 	
-	public FindItemByName(int key, String name) {
+	FindItemByName(int key, String name) {
 		super(key, name);
 	}
 	
 	@Override
 	public void execute(Input input, Tracker tracker) {
-		System.out.println("");
 		System.out.println("------------<FILTERING ITEMS BY NAME>--------------");
 		String name = input.ask("Please, enter the task's name:");
+		List<Item> allItems = tracker.findByName(name);
+		if (allItems.size() != 0) {
+			for (Item item : allItems) {
+				if (item != null) {
+					System.out.println(
+							String.format("%s. %s, %s", item.getId(), item.getName(), item.getDescription())
+					);
+				}
+			}
+		} else {
+			System.out.println("The tasks with the specified name ISN'T FOUND!");
+		}
+		/*
 		Item[] allItems = tracker.findByName(name);
 		if (allItems.length != 0) {
 			for (Item item: allItems) {
@@ -96,6 +102,7 @@ class FindItemByName extends BaseAction {
 			System.out.println("The tasks with the specified name ISN'T FOUND!");
 			System.out.println("");
 		}
+		*/
 	}
 }
 
@@ -106,7 +113,7 @@ class FindItemByName extends BaseAction {
 * @since 26.05.2018.
 * @version 1.0.
 */
-public class MenuTracker {
+class MenuTracker {
 	/**Система ввода.*/
 	private Input input;
 	/**Базовый класс.*/
@@ -122,7 +129,7 @@ public class MenuTracker {
 	* @param input интерфейс пользователя.
 	* @param tracker Tracker.
 	*/
-	public MenuTracker(Input input, Tracker tracker) {
+	MenuTracker(Input input, Tracker tracker) {
 		this.input = input;
 		this.tracker = tracker;
 	}
@@ -131,7 +138,7 @@ public class MenuTracker {
 	* Метод fillActions.
 	* Инициализирует события.
 	*/
-	public void fillActions() {
+	void fillActions() {
 		this.actions[position++] = new AddItem(0, "Add new item.");
 		this.actions[position++] = new ShowItems(1, "Show all items");
 		this.actions[position++] = new EditItem(2, "Edit item.");
@@ -146,8 +153,8 @@ public class MenuTracker {
 	* Создание массива с индексами actions.
 	* @return result массив с индексами actions.
 	*/
-	public int[] getRanges() {
-		int i = 0;
+	int[] getRanges() {
+		int i;
 		int[] result = new int[this.actions.length];
 		for (i = 0; i < actions.length; i++) {
 			if (this.actions[i] != null) {
@@ -165,7 +172,7 @@ public class MenuTracker {
 	* Добавление действий пользователя.
 	* @param action действие пользователя.
 	*/
-	public void addAction(UserAction action) {
+	void addAction(UserAction action) {
 		this.actions[position++] = action;
 	}
 	
@@ -174,7 +181,7 @@ public class MenuTracker {
 	* Выполняет действие, которое выбрал пользователь.
 	* @param key ключ выбранного пункта меню.
 	*/
-	public void select(int key) {
+	void select(int key) {
 		this.actions[key].execute(this.input, this.tracker);
 	}
 	
@@ -182,7 +189,7 @@ public class MenuTracker {
 	* Метод getExit.
 	* @return exit значение переменной exit.
 	*/
-	public boolean getExit() {
+	boolean getExit() {
 		return exit;
 	}
 	
@@ -190,7 +197,7 @@ public class MenuTracker {
 	* Метод show.
 	* Показывает меню.
 	*/
-	public void show() {
+	void show() {
 		for (UserAction action: this.actions) {
 			if (action != null) {
 				System.out.println(action.info());
@@ -204,16 +211,14 @@ public class MenuTracker {
 	*/
 	class MenuExit extends BaseAction {
 		
-		public MenuExit(int key, String name) {
+		MenuExit(int key, String name) {
 			super(key, name);
 		}
 		
 		@Override
 		public void execute(Input input, Tracker tracker) {
-			System.out.println("");
 			System.out.println("--------------<EXIT TRACKER>--------------");
 			exit = true;
-			System.out.println("");
 		}
 	}
 	
@@ -223,7 +228,7 @@ public class MenuTracker {
 	*/
 	class AddItem extends BaseAction {
 		
-		public AddItem(int key, String name) {
+		AddItem(int key, String name) {
 			super(key, name);
 		}
 		
@@ -232,7 +237,6 @@ public class MenuTracker {
 			String name = input.ask("Please, enter the task's name: ");
 			String desc = input.ask("Please, enter the task's desc: ");
 			tracker.add(new Task(name, desc));
-			System.out.println("");
 		}
 	}
 	
@@ -242,15 +246,16 @@ public class MenuTracker {
 	*/
 	class ShowItems extends BaseAction {
 		
-		public ShowItems(int key, String name) {
+		ShowItems(int key, String name) {
 			super(key, name);
 		}
 		
 		@Override
 		public void execute(Input input, Tracker tracker) {
-			Item[] allItems = tracker.getAll();
-			if (allItems.length != 0) {
-				System.out.println("");
+			//Item[] allItems = tracker.getAll();
+			List<Item> allItems = tracker.getAll();
+			//if (allItems.length != 0) {
+			if (allItems.size() != 0) {
 				System.out.println("--------------<ITEMS LIST>--------------");
 				for (Item item : allItems) {
 					if (item != null) {
@@ -262,10 +267,8 @@ public class MenuTracker {
 					}
 				}
 				System.out.println("--------------<END OF LIST>--------------");
-				System.out.println("");
 			} else {
 				System.out.println("There are no items in the Tracker!");
-				System.out.println("");
 			}
 		}
 	}
@@ -276,13 +279,12 @@ public class MenuTracker {
 	*/
 	class DeleteItem extends BaseAction {
 		
-		public DeleteItem(int key, String name) {
+		DeleteItem(int key, String name) {
 			super(key, name);
 		}
 	
 		@Override
 		public void execute(Input input, Tracker tracker) {
-			System.out.println("");
 			System.out.println("--------------<DELETE ITEM>--------------");
 			String id = input.ask("Please, enter the task's id:");
 			Item item = tracker.findById(id);
@@ -293,10 +295,8 @@ public class MenuTracker {
 				System.out.println("description: " + item.getDescription());
 				tracker.delete(id);
 				System.out.println("-------------- Item has been deleted ---------------");
-				System.out.println("");
 			} else {
 				System.out.println("The task with the specified id ISN'T FOUND!");
-				System.out.println("");
 			}
 		}
 	}

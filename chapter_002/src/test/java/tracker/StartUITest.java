@@ -5,7 +5,7 @@ import tracker.start.Input;
 import tracker.start.StartUI;
 import tracker.start.StubInput;
 import tracker.start.Tracker;
-
+import java.util.List;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.*;
 /**
@@ -28,7 +28,7 @@ public class StartUITest {
 public void whenUserAddItemThenTrackerHasNewItemWithSameName() {
    Input input = new StubInput(new String[]{"0", "test name", "desc", "6"});
    new StartUI(input, tracker).init();
-   assertThat(tracker.getAll()[0].getName(), is("test name")); 
+   assertThat(tracker.getAll().get(0).getName(), is("test name"));
 }
 
 /**
@@ -66,8 +66,9 @@ public void whenUserFindItemByNameThenTrackerFindItemsWithFilter() {
 		"0", "item11", "desc",
 		"5", filter, "6"});
 	new StartUI(input, tracker).init();
-	Item[] filterItems = tracker.findByName(filter);
-	assertThat(filterItems.length, is(2));
+	List<Item> filterItems = tracker.findByName(filter);
+	//Item[] filterItems = tracker.findByName(filter);
+	assertThat(filterItems.size(), is(2));
 }
 
 /**
@@ -78,7 +79,7 @@ public void whenUserUpdateItemNameThenTrackerHasItemWithUpdatedName() {
 	Item item = tracker.add(new Item("test1", "desc1", 123L));
 	Input input = new StubInput(new String[]{"2", item.getId(), "updateTest", "desc1", "6"});
 	new StartUI(input, tracker).init();
-	assertThat(tracker.getAll()[0].getName(), is("updateTest"));
+	assertThat(tracker.findById(item.getId()).getName(), is("updateTest"));
 }
 
 /**
@@ -89,7 +90,7 @@ public void whenUserUpdateItemDescThenTrackerHasItemWithUpdatedDesc() {
 	Item item = tracker.add(new Item("test1", "desc1", 123L));
 	Input input = new StubInput(new String[]{"2", item.getId(), "test1", "updatedDesc", "6"});
 	new StartUI(input, tracker).init();
-	assertThat(tracker.getAll()[0].getDescription(), is("updatedDesc"));
+	assertThat(tracker.findById(item.getId()).getDescription(), is("updatedDesc"));
 }
 
 /**
@@ -103,7 +104,8 @@ public void whenUserAdd3ItemsThenTrackerShow3Items() {
 		"0", "item3", "desc",
 		"1", "6"});
 	new StartUI(input, tracker).init();
-	Item[] allItems = tracker.getAll();
-	assertThat(allItems.length, is(3));
+	List<Item> allItems = tracker.getAll();
+	//Item[] allItems = tracker.getAll();
+	assertThat(allItems.size(), is(3));
 }
 }

@@ -15,7 +15,8 @@ public class Tracker {
 	* Поле items.
 	* Реализация хранилища для заявок.
 	*/
-	private Item[] items = new Item[100];
+	//private Item[] items = new Item[100];
+	private List<Item> items = new ArrayList<Item>();
 	/**
 	* Поле position.
 	* Используется для присвоения заявкам уникальных ключей id.
@@ -34,17 +35,29 @@ public class Tracker {
 	*/
 	public Item add(Item item) {
 		item.setId(this.generateId());
+		this.items.add(item);
+		return item;
+		/*
+		item.setId(this.generateId());
 		this.items[position++] = item;
 		return item;
+		*/
 	}
 	/**
 	* Метод delete(String id).
 	* Удаление заявки по id.
 	* Первый цикл for находит заявку по id и присваивает ей null.
 	* Второй цикл for делает сдвиг элементов массива и уменьшает его размер на 1.
-	* @param id. Уникальный индетификатор заявки.
+	* @param id Уникальный индетификатор заявки.
 	*/
 	public void delete(String id) {
+		for (Item item : items) {
+			if (item.getId().equals(id)) {
+				items.remove(item);
+				break;
+			}
+		}
+		/*
 		for (int index = 0; index < this.position; index++) {
 			if (id != null && this.items[index].getId().equals(id)) {
 				System.arraycopy(this.items, index + 1, this.items, index, this.position - 1 - index);
@@ -52,6 +65,7 @@ public class Tracker {
 			break;
 			}
 		}
+		*/
 	}
 	
 	/**
@@ -62,6 +76,14 @@ public class Tracker {
 	* @param newDescription Новое описание заявки.
 	*/
 	public void replace(String id, String newName, String newDescription) {
+		for (Item item : items) {
+			if (item.getId().equals(id)) {
+				item.setName(newName);
+				item.setDescription(newDescription);
+				items.set(this.items.indexOf(item), item);
+			}
+		}
+		/*
 		if (id != null) {
 			for (int i = 0; i < items.length; i++) {
 				if (this.items[i] != null && this.items[i].getId().equals(id)) {
@@ -71,29 +93,33 @@ public class Tracker {
 				}
 			}
 		}
+		*/
 	}
 	/**
 	* Метод findById(String id).
 	* Поиск заявки по ключу id.
-	* @param id. Уникальный индетификатор заявки.
+	* @param id Уникальный индетификатор заявки.
 	* @return заявка.
 	*/
 	public Item findById(String id) {
 		Item result = null;
 		for (Item item : items) {
-			if (item != null && item.getId().equals(id)) {
+			//if (item != null && item.getId().equals(id)) {
+			if (item.getId().equals(id)) {
 				result = item;
 				break;
 			}
 		}
 		return result;
 	}
+
 	/**
 	* Метод findByName(String key).
 	* Получение списка заявок по имени.
-	* @param key. Строка фильтра.
+	* @param key Строка фильтра.
 	* @return список заявок.
 	*/
+	/*
 	public Item[] findByName(String key) {
 		Item[] result = new Item[this.position];
 		int count = 0;
@@ -111,6 +137,17 @@ public class Tracker {
 		}
 		return result;
 	}
+	*/
+
+	public List<Item> findByName(String key) {
+		List<Item> result = new ArrayList<>();
+		for (Item item : items) {
+			if (item.getName().contains(key)) {
+				result.add(item);
+			}
+		}
+		return result;
+	}
 	/**
 	* Метод generateId().
 	* Генерация уникального ключа.
@@ -124,11 +161,17 @@ public class Tracker {
 	* Вывод всех существующих заявок.
 	* @return массив заявок.
 	*/
+	/*
 	public Item[] getAll() {
 		Item[] result = new Item[this.position];
 		for (int index = 0; index != this.position; index++) {
 			result[index] = this.items[index];
 		}
+		return result;
+	}
+	*/
+	public List<Item> getAll() {
+		List<Item> result = new ArrayList<>(items);
 		return result;
 	}
 }
