@@ -7,7 +7,7 @@ package listtomap;
  * @since 17.09.2018
  * @version 1.0
  */
-public class User {
+class User {
     private int id;
     private String name;
     private String city;
@@ -18,7 +18,7 @@ public class User {
      * @param name имя.
      * @param city город.
      */
-    public User(int id, String name, String city) {
+    User(int id, String name, String city) {
 
         this.id = id;
         this.name = name;
@@ -30,7 +30,7 @@ public class User {
      * Возврат индетификатора.
      * @return индетификатор.
      */
-    public int getId() {
+    int getId() {
         return id;
     }
 
