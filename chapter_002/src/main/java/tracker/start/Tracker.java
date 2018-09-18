@@ -45,10 +45,11 @@ public class Tracker {
 	public void delete(String id) {
 		for (Item item : items) {
 			if (item.getId().equals(id)) {
-				items.remove(item);
+				items.remove(items.indexOf(item));
 				break;
 			}
 		}
+
 	}
 	
 	/**
