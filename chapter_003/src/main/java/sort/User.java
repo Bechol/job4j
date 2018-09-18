@@ -7,7 +7,7 @@ package sort;
  * @since 17.09.2018
  * @version 1.0
  */
-public class User implements Comparable<User> {
+class User implements Comparable<User> {
     private String name;
 
 
@@ -32,7 +32,7 @@ public class User implements Comparable<User> {
      * @param name имя.
      * @param age возраст.
      */
-    public User(String name, Integer age) {
+    User(String name, Integer age) {
         this.name = name;
         this.age = age;
     }
@@ -53,7 +53,7 @@ public class User implements Comparable<User> {
      * Вывовод возраста пользователя.
      * @return
      */
-    public int getAge() {
+    int getAge() {
         return age;
     }
 
@@ -62,7 +62,7 @@ public class User implements Comparable<User> {
      * Вывовод имени пользователя.
      * @return имя пользователя.
      */
-    public String getName() {
+    String getName() {
         return name;
     }
 }
