@@ -17,7 +17,7 @@ public class PriorityQueue {
         for (int i = 0; i < tasks.size(); i++) {
             if (task.getPriority() < tasks.get(i).getPriority()) {
                 System.out.println(tasks.get(i).getDesc() + ". " + tasks.get(i).getPriority());
-                newIndex = tasks.indexOf(tasks.get(i));
+                newIndex = i;
                 break;
             }
         }
