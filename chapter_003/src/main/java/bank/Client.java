@@ -8,7 +8,7 @@ import java.util.Objects;
  * @since 19.09.2018
  * @version 1.0
  */
-class Client {
+class Client implements Comparable<Client>{
     private String name;
     private String passport;
 
@@ -43,5 +43,10 @@ class Client {
                 "name='" + name + '\'' +
                 ", passport='" + passport + '\'' +
                 '}';
+    }
+
+    @Override
+    public int compareTo(Client o) {
+        return this.passport.compareTo(o.passport);
     }
 }

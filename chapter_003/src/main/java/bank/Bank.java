@@ -17,6 +17,10 @@ public class Bank implements ClientOperations, AccountOperations {
         return "Bank{" + "treemap=" + treemap + '}';
     }
 
+    public TreeMap<Client, List<Account>> getTreemap() {
+        return this.treemap;
+    }
+
     /**
      * Метод addClient(Client client).
      * Добавление клиента.
@@ -24,7 +28,7 @@ public class Bank implements ClientOperations, AccountOperations {
      */
     @Override
     public void addClient(Client client) {
-        this.treemap.put(client, new ArrayList<Account>());
+        this.treemap.putIfAbsent(client, new ArrayList<Account>());
     }
 
     /**
@@ -52,6 +56,13 @@ public class Bank implements ClientOperations, AccountOperations {
                                  String payeePassport, String payeeRequisite,
                                  double transferSumm) {
         boolean result = false;
+        Account senderAccount = this.getClientAccount(senderPassport, senderRequisite);
+        Account payeeAccount = this.getClientAccount(payeePassport, payeeRequisite);
+        if (senderAccount != null & payeeAccount != null && senderAccount.getValue() >= transferSumm) {
+           senderAccount.setValue(senderAccount.getValue() - transferSumm);
+            payeeAccount.setValue(payeeAccount.getValue() + transferSumm);
+            result = true;
+        }
         return result;
     }
 
