@@ -2,8 +2,6 @@ package sort;
 
 import java.util.*;
 
-import static com.sun.org.apache.xerces.internal.util.PropertyState.is;
-
 /**
  * Класс SortUser.
  * Методы сортировки.
