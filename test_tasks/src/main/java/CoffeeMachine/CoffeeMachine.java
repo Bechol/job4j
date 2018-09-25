@@ -23,21 +23,21 @@ public class CoffeeMachine {
      */
     private final ArrayList<Integer> resultCash = new ArrayList<>();
     /**
-     * Метод int[] changes(int value, int price, ArrayList<Integer> monets).
+     * Метод int[] changes(int value, int price, ArrayList<Integer> coins).
      * Возвращает массив монет сдачи.
      * @param value сумма, отправленная в кофейную машину.
      * @param price цена кофе.
-     * @param monets список имеющихся в автомате монет.
+     * @param coins список имеющихся в автомате монет.
      * @return массив монет в сдаче.
      */
-    public int[] changes(int value, int price, ArrayList<Integer> monets) {
-        Collections.reverse(monets);
+    public int[] changes(int value, int price, ArrayList<Integer> coins) {
+        Collections.reverse(coins);
         int change = value - price;
         if (change > 0) {
-            for (Integer monet : monets) {
-                while (change >= monet) {
-                    change -= monet;
-                    resultCash.add(monet);
+            for (Integer coin : coins) {
+                while (change >= coin) {
+                    change -= coin;
+                    resultCash.add(coin);
                 }
             }
         } else {
@@ -54,8 +54,8 @@ public class CoffeeMachine {
     private static int[] buildIntArray(List<Integer> resultCash) {
         int i = 0;
         int[] resultChanges = new int[resultCash.size()];
-        for (int monet : resultCash){
-            resultChanges[i++] = monet;
+        for (int coin : resultCash){
+            resultChanges[i++] = coin;
         }
         return resultChanges;
     }
