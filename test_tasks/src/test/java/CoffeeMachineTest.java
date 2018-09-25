@@ -1,8 +1,7 @@
-import CoffeeMachine.CoffeeMachine;
+import coffeemachine.Coffeemachine;
 import org.junit.Test;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import static org.junit.Assert.assertThat;
 import static org.hamcrest.core.Is.is;
@@ -20,7 +19,7 @@ public class CoffeeMachineTest {
      */
     @Test
     public void whenValueIs50AndPriceIs35ThenChangesIs10And5() {
-        CoffeeMachine cm = new CoffeeMachine();
+        Coffeemachine cm = new Coffeemachine();
         ArrayList<Integer> coins = new ArrayList<>();
         coins.add(1);
         coins.add(2);
@@ -36,7 +35,7 @@ public class CoffeeMachineTest {
      */
     @Test
     public void whenValueIs50AndPriceIs35ThenSizeOfChangesArrayis0() {
-        CoffeeMachine cm = new CoffeeMachine();
+        Coffeemachine cm = new Coffeemachine();
         ArrayList<Integer> coins = new ArrayList<>();
         coins.add(1);
         coins.add(2);

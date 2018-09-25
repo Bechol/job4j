@@ -8,7 +8,7 @@ import java.util.Objects;
  * @since 19.09.2018
  * @version 1.0
  */
-class Client implements Comparable<Client>{
+class Client implements Comparable<Client> {
     private String name;
     private String passport;
 
@@ -24,25 +24,24 @@ class Client implements Comparable<Client>{
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Client user = (Client) o;
-        return Objects.equals(name, user.name) &&
-                Objects.equals(passport, user.passport);
+        return Objects.equals(name, user.name) && Objects.equals(passport, user.passport);
     }
 
     @Override
     public int hashCode() {
-
         return Objects.hash(name, passport);
     }
 
     @Override
     public String toString() {
-        return "User{" +
-                "name='" + name + '\'' +
-                ", passport='" + passport + '\'' +
-                '}';
+        return "User{" + "name='" + name + '\'' + ", passport='" + passport + '\'' + '}';
     }
 
     @Override

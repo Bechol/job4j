@@ -30,7 +30,7 @@ public interface ClientOperations {
      * @param transferSumm сумма.
      * @return результат true/false.
      */
-    public boolean transferMoney (String senderPassport, String senderRequisite,
+    public boolean transferMoney(String senderPassport, String senderRequisite,
                                   String payeePassport, String payeeRequisite,
                                   double transferSumm);
 

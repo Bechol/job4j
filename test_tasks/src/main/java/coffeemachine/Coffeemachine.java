@@ -1,17 +1,17 @@
-package CoffeeMachine;
+package coffeemachine;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 /**
- * Класс CoffeeMachine.
+ * Класс Coffeemachine.
  * Реализация метода выдачи сдачи из кофейного автомата.
  * Тестовое задание job4j #34741.
  * @author Oleg Bech (oleg071984@gmail.com)
  * @since 25.09.2018
  * @version 1.0
  */
-public class CoffeeMachine {
+public class Coffeemachine {
     /**
      * Переменная NULL_CASH_ARRAY.
      * Массив нулевой длины возвращается методом в случае если сдача 0.
@@ -54,7 +54,7 @@ public class CoffeeMachine {
     private static int[] buildIntArray(List<Integer> resultCash) {
         int i = 0;
         int[] resultChanges = new int[resultCash.size()];
-        for (int coin : resultCash){
+        for (int coin : resultCash) {
             resultChanges[i++] = coin;
         }
         return resultChanges;

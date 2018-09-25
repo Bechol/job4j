@@ -1,11 +1,11 @@
-package DeptSort;
+package deptsort;
 
 import java.util.Objects;
 
-public class unit {
+public class Unit {
     private String dept, service, office;
 
-    public unit(String dept, String service, String office) {
+    public Unit(String dept, String service, String office) {
         this.dept = "K" + dept;
         this.service = service;
         this.office = office;
@@ -30,12 +30,15 @@ public class unit {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        unit unit = (unit) o;
-        return Objects.equals(dept, unit.dept) &&
-                Objects.equals(service, unit.service) &&
-                Objects.equals(office, unit.office);
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Unit unit = (Unit) o;
+        return Objects.equals(dept, unit.dept) && Objects.equals(service, unit.service)
+                && Objects.equals(office, unit.office);
     }
 
     @Override
