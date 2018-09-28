@@ -3,6 +3,7 @@ package tracker.start;
 import tracker.models.*;
 import java.util.*;
 import java.util.List;
+import java.util.function.Consumer;
 
 /**
 * Внешний класс EditItem.
@@ -197,14 +198,15 @@ class MenuTracker {
 	* Метод show.
 	* Показывает меню.
 	*/
-	void show() {
+	void show(Consumer<String> media) {
 		for (UserAction action: this.actions) {
 			if (action != null) {
-				System.out.println(action.info());
+				//System.out.println(action.info());
+				media.accept(action.info());
 			}
 		}
 	}
-	
+
 	/**
 	* Внутреннии нестатический класс MenuExit.
 	* Выход из программы.
