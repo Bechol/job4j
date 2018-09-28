@@ -1,4 +1,10 @@
+import java.util.ArrayList;
+import java.util.List;
+import java.util.function.Function;
+
 /**
+ * Класс Diapason.
+ * Подсчет функции в диапазоне. [#24251]
  * @author Oleg Bech
  * @version 1.0
  * @e-mail oleg071984@gmail.com
@@ -6,45 +12,18 @@
  */
 public class Diapason {
     /**
-     * Внутренний функциональный интерфейс LinearFunction.
+     * Метод calcFunction(int start, int end, Function<Double, Double> func).
+     * Заполнение листа результатами работы определенной пользователем функции в диапазоне.
+     * @param start начало диапазона.
+     * @param end конец диапазона.
+     * @param func готовый функциональный интерфейс.
+     * @return список типа ArrayList<Double> с результатами вычислений.
      */
-    public interface LinearFunction {
-        /**
-         * Метод getLinear(int x, int b).
-         * Возвращает значение линейной функции вида y = 2x + b.
-         * @param x множитель.
-         * @param b числовой коэффициент.
-         * @return у значение линейной функции.
-         */
-        int getLinear(int x, int b);
-    }
-
-    /**
-     * Внутренний функциональный интерфейс SquareFunction.
-     */
-    public interface SquareFunction {
-        /**
-         * Метод getSquare(int x, int a).
-         * Возвращает значение квадратичной функции вида y = ax2 + bx + c.
-         * Задается парметр а. Параметры b и c - вычисляются внутри метода.
-         * @param x множитель.
-         * @param a параметр.
-         * @return у значение линейной функции.
-         */
-        int getSquare(int x, int a);
-    }
-
-    /**
-     * Внутренний функциональный интерфейс LogFunction.
-     */
-    public interface LogFunction {
-        /**
-         * getLog(int x, int y).
-         * Возвращает логарифм из y по основанию x.
-         * @param x основание.
-         * @param y число.
-         * @return логарифм.
-         */
-        double getLog(int x, int y);
+    public List<Double> calcFunction(int start, int end, Function<Double, Double> func) {
+        List<Double> resList = new ArrayList<>();
+        for (int index = start; index != end; index++) {
+            resList.add(func.apply((double) index));
+        }
+        return resList;
     }
 }
