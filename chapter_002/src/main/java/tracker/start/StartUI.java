@@ -44,33 +44,14 @@ public class StartUI {
 		};
 		menu.addAction(deleteAction);
 		do {
-			//menu.show((result)-> System.out.println(result));
 			menu.show(System.out::println);
 			menu.select(input.ask("select:", menu.getRanges()));
 		} while (!menu.getExit());
 	}
 	
-/**
-* Метод showMenu.
-* Вывод пользовательского меню в консоли.
-*/	
-	private void showMenu() {
-        System.out.println("<TRACKER PROJECT>");
-		System.out.println("Menu");
-		System.out.println("0.Add item");
-		System.out.println("1.Show all items");
-		System.out.println("2.Edit item name and desc");
-		System.out.println("3.Delete item");
-		System.out.println("4.Find item by id");
-		System.out.println("5.Find item by name");
-		System.out.println("6.Exit tracker");
-    }
+
 	
 	public static void main(String[] args) {
-		new StartUI(
-				new ValidateInput(
-						new ConsoleInput()
-						), new Tracker()
-						).init();
+		new StartUI(new ValidateInput(new ConsoleInput()), new Tracker()).init();
 	}
 }

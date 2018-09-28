@@ -19,7 +19,7 @@ class EditItem extends BaseAction {
 	public void execute(Input input, Tracker tracker) {
 		System.out.println("--------------<ITEM EDIT>--------------");
 		String id = input.ask("Please, enter the task's id:");
-		Item item = tracker.findById(id, (s) -> s.getId().equals(id));
+		Item item = tracker.findById(id);
 		if (item != null) {
 			System.out.println("-------------- Tracker has found item --------------");
 			System.out.println(
@@ -50,7 +50,7 @@ class FindItemById extends BaseAction {
 	public void execute(Input input, Tracker tracker) {
 		System.out.println("------------<FIND ITEM BY ID>--------------");
 		String id = input.ask("Please, enter the task's id:");
-		Item item = tracker.findById(id, s -> s.getId().equals(id));
+		Item item = tracker.findById(id);
 		if (item != null) {
 			System.out.println("-------------- Tracker has found item --------------");
 			System.out.println(
@@ -77,7 +77,7 @@ class FindItemByName extends BaseAction {
 	public void execute(Input input, Tracker tracker) {
 		System.out.println("------------<FILTERING ITEMS BY NAME>--------------");
 		String name = input.ask("Please, enter the task's name:");
-		List<Item> allItems = tracker.findByName(name, s -> s.getName().contains(name));
+		List<Item> allItems = tracker.findByName(name);
 		if (allItems.size() != 0) {
 			for (Item item : allItems) {
 				if (item != null) {
@@ -198,15 +198,15 @@ class MenuTracker {
 	* Метод show.
 	* Показывает меню.
 	*/
-	void show(Consumer<String> consumer) {
+	void show(Consumer<String> media) {
 		for (UserAction action: this.actions) {
 			if (action != null) {
 				//System.out.println(action.info());
-				consumer.accept(action.info());
+				media.accept(action.info());
 			}
 		}
 	}
-	
+
 	/**
 	* Внутреннии нестатический класс MenuExit.
 	* Выход из программы.
@@ -289,7 +289,7 @@ class MenuTracker {
 		public void execute(Input input, Tracker tracker) {
 			System.out.println("--------------<DELETE ITEM>--------------");
 			String id = input.ask("Please, enter the task's id:");
-			Item item = tracker.findById(id, s -> s.getId().equals(id));
+			Item item = tracker.findById(id);
 			if (item != null) {
 				System.out.println("-------------- Tracker has found item --------------");
 				System.out.println("id: " + item.getId());
