@@ -1,9 +1,11 @@
+package Lambda;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Function;
 
 /**
- * Класс Diapason.
+ * Класс Lambda.Diapason.
  * Подсчет функции в диапазоне. [#24251]
  * @author Oleg Bech
  * @version 1.0
