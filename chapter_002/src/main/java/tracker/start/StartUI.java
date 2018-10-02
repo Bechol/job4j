@@ -44,7 +44,8 @@ public class StartUI {
 		};
 		menu.addAction(deleteAction);
 		do {
-			menu.show();
+			//menu.show((result)-> System.out.println(result));
+			menu.show(System.out::println);
 			menu.select(input.ask("select:", menu.getRanges()));
 		} while (!menu.getExit());
 	}
