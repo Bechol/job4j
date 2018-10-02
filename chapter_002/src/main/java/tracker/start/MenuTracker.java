@@ -198,15 +198,15 @@ class MenuTracker {
 	* Метод show.
 	* Показывает меню.
 	*/
-	void show(Consumer<String> media) {
+	void show(Consumer<String> consumer) {
 		for (UserAction action: this.actions) {
 			if (action != null) {
 				//System.out.println(action.info());
-				media.accept(action.info());
+				consumer.accept(action.info());
 			}
 		}
 	}
-
+	
 	/**
 	* Внутреннии нестатический класс MenuExit.
 	* Выход из программы.
