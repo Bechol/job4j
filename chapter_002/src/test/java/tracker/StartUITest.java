@@ -16,7 +16,7 @@ import static org.junit.Assert.*;
  */ 
 public class StartUITest {
 	private Tracker tracker;
-	
+
 	public StartUITest() {
 		this.tracker = new Tracker();
 	}
