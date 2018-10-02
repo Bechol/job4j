@@ -2,6 +2,7 @@ package tracker.start;
 
 import tracker.models.*;
 import java.util.*;
+import java.util.function.Predicate;
 
 /**
  * Класс Tracker.
@@ -73,10 +74,10 @@ public class Tracker {
 	* @param id Уникальный индетификатор заявки.
 	* @return заявка.
 	*/
-	public Item findById(String id) {
+	public Item findById(String id, Predicate<Item> predicate) {
 		Item result = null;
 		for (Item item : items) {
-			if (item.getId().equals(id)) {
+			if (predicate.test(item)) {
 				result = item;
 				break;
 			}
@@ -90,10 +91,10 @@ public class Tracker {
 	* @param key Строка фильтра.
 	* @return список заявок.
 	*/
-	public List<Item> findByName(String key) {
+	public List<Item> findByName(String key, Predicate<Item> predicate) {
 		List<Item> result = new ArrayList<>();
 		for (Item item : items) {
-			if (item.getName().contains(key)) {
+			if (predicate.test(item)) {
 				result.add(item);
 			}
 		}

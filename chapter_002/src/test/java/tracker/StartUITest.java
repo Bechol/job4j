@@ -32,19 +32,6 @@ public void whenUserAddItemThenTrackerHasNewItemWithSameName() {
 }
 
 /**
-* Тест удаления заявки.
-
-@Test
-public void whenUserDelItemByIdThenTrackerDontFindThisItemById() {
-	Item item = tracker.add(new Item("test1", "desc1", 123L));
-	Input input = new StubInput(new String[]{"3", item.getId(), "6"});
-	new StartUI(input, tracker).init();
-	Item[] allItems = tracker.getAll();
-	assertThat(allItems.length, is(0));
-}
-*/
-
-/**
 * Тест поиска заявки по id.
 */
 @Test
@@ -52,7 +39,8 @@ public void whenUserFindItemByIdThenTrackerFindItemWithSameName() {
 	Item item = tracker.add(new Item("test1", "desc1", 123L));
 	Input input = new StubInput(new String[]{"4", item.getId(), "6"});
 	new StartUI(input, tracker).init();
-	assertThat(tracker.findById(item.getId()).getName(), is("test1"));
+	assertThat(tracker.findById(item.getId(),
+			s -> s.getId().equals(item.getId())).getName(), is("test1"));
 }
 /**
 * Тест поиска заявок по имени.
@@ -66,7 +54,7 @@ public void whenUserFindItemByNameThenTrackerFindItemsWithFilter() {
 		"0", "item11", "desc",
 		"5", filter, "6"});
 	new StartUI(input, tracker).init();
-	List<Item> filterItems = tracker.findByName(filter);
+	List<Item> filterItems = tracker.findByName(filter, s -> s.getName().contains(filter));
 	//Item[] filterItems = tracker.findByName(filter);
 	assertThat(filterItems.size(), is(2));
 }
@@ -79,7 +67,8 @@ public void whenUserUpdateItemNameThenTrackerHasItemWithUpdatedName() {
 	Item item = tracker.add(new Item("test1", "desc1", 123L));
 	Input input = new StubInput(new String[]{"2", item.getId(), "updateTest", "desc1", "6"});
 	new StartUI(input, tracker).init();
-	assertThat(tracker.findById(item.getId()).getName(), is("updateTest"));
+	assertThat(tracker.findById(item.getId(),
+			s -> s.getId().equals(item.getId())).getName(), is("updateTest"));
 }
 
 /**
@@ -90,7 +79,8 @@ public void whenUserUpdateItemDescThenTrackerHasItemWithUpdatedDesc() {
 	Item item = tracker.add(new Item("test1", "desc1", 123L));
 	Input input = new StubInput(new String[]{"2", item.getId(), "test1", "updatedDesc", "6"});
 	new StartUI(input, tracker).init();
-	assertThat(tracker.findById(item.getId()).getDescription(), is("updatedDesc"));
+	assertThat(tracker.findById(item.getId(),
+			s -> s.getId().equals(item.getId())).getDescription(), is("updatedDesc"));
 }
 
 /**
