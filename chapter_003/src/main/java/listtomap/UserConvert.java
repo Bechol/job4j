@@ -2,6 +2,10 @@ package listtomap;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 /**
  * Класс UserConvert.
@@ -17,11 +21,8 @@ public class UserConvert {
      * @param list список пользователей.
      * @return Map.
      */
-    public HashMap<Integer, User> process(List<User> list) {
-        HashMap<Integer, User> hm = new HashMap<>(list.size());
-        for (User user : list) {
-            hm.put(user.getId(), user);
-        }
-        return hm;
+    public Map<Integer, User> process(List<User> list) {
+        return list.stream().collect(
+                Collectors.toMap(User::getId, Function.identity()));
     }
 }

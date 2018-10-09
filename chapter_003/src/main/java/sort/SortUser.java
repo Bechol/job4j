@@ -1,6 +1,7 @@
 package sort;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * Класс SortUser.
@@ -12,28 +13,24 @@ import java.util.*;
 public class SortUser {
     /**
      * Метод sort.
-     * Возвращает TreeSet пользователей, отсортированных по возастанию.
+     * Натуральная сортировка списка.
      * @param users список пользователей.
-     * @return
+     * @return отсортированный сет.
      */
     public Set<User> sort(List<User> users) {
-        return new TreeSet<User>(users);
+        return users.stream().sorted().collect(Collectors.toSet());
     }
 
     /**
      * Метод sortByAge.
-     * Сортирвка пользователей по возрастанию "возраста".
+     * Сортирвка пользователей по возрасту по возрастанию.
      * @param list список пользвателей.
      * @return отсортированный список.
      */
     public List<User> sortByAge(List<User> list) {
-        list.sort(new Comparator<User>() {
-            @Override
-            public int compare(User o1, User o2) {
-                return Integer.compare(o1.getAge(), o2.getAge());
-            }
-        });
-        return list;
+        return list.stream().sorted(
+                Comparator.comparingInt(User::getAge)
+        ).collect(Collectors.toList());
     }
 
      /**
@@ -43,14 +40,9 @@ public class SortUser {
       * @return отсортированный список.
       */
      public List<User> sortByAllFields(List<User> list) {
-         list.sort(new Comparator<User>() {
-             @Override
-             public int compare(User o1, User o2) {
-                 int rst = o1.getName().compareTo(o2.getName());
-                 return rst != 0 ? rst : Integer.compare(o1.getAge(), o2.getAge());
-             }
-         });
-         return list;
+         return list.stream().sorted(
+                 Comparator.comparing(User::getName).thenComparing(User::getAge)
+         ).collect(Collectors.toList());
      }
 
     /**
@@ -60,14 +52,8 @@ public class SortUser {
      * @return отсортированный список.
      */
     public List<User> sortNameLength(List<User> list) {
-        list.sort(new Comparator<User>() {
-            @Override
-            public int compare(User o1, User o2) {
-                return Integer.compare(o1.getName().length(),
-                        o2.getName().length());
-            }
-        });
-        return list;
+        return list.stream().sorted(
+                Comparator.comparing(User::getAge)
+        ).collect(Collectors.toList());
     }
-
 }

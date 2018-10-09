@@ -1,9 +1,7 @@
 package convert;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * Класс ConvertList2Array.
@@ -43,14 +41,9 @@ public class ConvertList2Array {
      * @return лист.
      */
     public List<Integer> convert(List<int[]> list) {
-        List<Integer> bigList = new ArrayList<>();
-        int cnt = 0;
-        for (int[] array : list) {
-            for (int anArray : array) {
-                bigList.add(cnt, anArray);
-                cnt++;
-            }
-        }
-        return bigList;
+        return list.stream()
+                .flatMapToInt(Arrays::stream)
+                .boxed()
+                .collect(Collectors.toCollection(ArrayList::new));
     }
 }

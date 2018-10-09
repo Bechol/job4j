@@ -3,6 +3,7 @@ package priority;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedList;
+import java.util.stream.Collectors;
 
 public class PriorityQueue {
     private LinkedList<Task> tasks = new LinkedList<>();
@@ -13,15 +14,11 @@ public class PriorityQueue {
      * @param task задача
      */
     public void put(Task task) {
-        int newIndex = tasks.size();
-        for (int i = 0; i < tasks.size(); i++) {
-            if (task.getPriority() < tasks.get(i).getPriority()) {
-                System.out.println(tasks.get(i).getDesc() + ". " + tasks.get(i).getPriority());
-                newIndex = i;
-                break;
-            }
-        }
-        tasks.add(newIndex, task);
+        int index = tasks.stream().filter(
+                tasks -> tasks.getPriority() < task.getPriority()
+        ).collect(Collectors.toList()).size();
+        this.tasks.add(index, task);
+
     }
 
     /**
