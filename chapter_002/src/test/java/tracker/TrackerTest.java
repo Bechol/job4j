@@ -61,7 +61,7 @@ public void whenDeleteItemThenItemIsNull() {
 		tracker.add(new Item("Task3", "TaskDesc3", 12345L));
 		List<Item> expect = new ArrayList<>();
 		expect.add(test);
-		assertThat(tracker.findByName("Task2", s -> s.getName().contains("Task2")), is(expect));
+		assertThat(tracker.findByName("Task2"), is(expect));
 	}
 /**
 * Тест поиска по id.
@@ -72,7 +72,6 @@ public void whenDeleteItemThenItemIsNull() {
 		Item testItem = tracker.add(new Item("Task1", "TaskDesc1", 123L));
 		tracker.add(new Item("Task2", "TaskDesc2", 1234L));
 		tracker.add(new Item("Task3", "TaskDesc3", 12345L));
-		assertThat(tracker.findById(testItem.getId(),
-				s -> s.getId().equals(testItem.getId())).getName(), is("Task1"));
+		assertThat(tracker.findById(testItem.getId()).getName(), is("Task1"));
 	}
 }

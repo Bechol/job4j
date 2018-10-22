@@ -74,10 +74,11 @@ public class Tracker {
 	* @param id Уникальный индетификатор заявки.
 	* @return заявка.
 	*/
-	public Item findById(String id, Predicate<Item> predicate) {
+	public Item findById(String id) {
 		Item result = null;
+		Predicate<Item> p = item -> item.getId().equals(id);
 		for (Item item : items) {
-			if (predicate.test(item)) {
+			if (p.test(item)) {
 				result = item;
 				break;
 			}
@@ -91,10 +92,11 @@ public class Tracker {
 	* @param key Строка фильтра.
 	* @return список заявок.
 	*/
-	public List<Item> findByName(String key, Predicate<Item> predicate) {
+	public List<Item> findByName(String key) {
 		List<Item> result = new ArrayList<>();
+		Predicate<Item> p = item -> item.getName().equals(key);
 		for (Item item : items) {
-			if (predicate.test(item)) {
+			if (p.test(item)) {
 				result.add(item);
 			}
 		}
