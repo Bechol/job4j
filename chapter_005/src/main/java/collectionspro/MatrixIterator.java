@@ -46,8 +46,9 @@ public class MatrixIterator implements Iterator<Integer> {
      * @return элементы матрицы.
      */
     public Integer next() {
-        if (!hasNext())
+        if (!hasNext()) {
             throw new NoSuchElementException();
+        }
         if (columnIndex >= matrix[rowIndex].length) {
             rowIndex++;
             columnIndex = 0;
