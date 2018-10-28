@@ -32,6 +32,7 @@ public class IteratorEvenNums implements Iterator<Integer> {
         for (int i = index; i < values.length; i++) {
             if (values[i] % 2 == 0) {
                 result = true;
+                index = i;
                 break;
             }
         }
@@ -47,9 +48,6 @@ public class IteratorEvenNums implements Iterator<Integer> {
     public Integer next() {
         if (!hasNext()) {
             throw new NoSuchElementException();
-        }
-        while (values[index] % 2 != 0) {
-            index++;
         }
         return values[index++];
     }
