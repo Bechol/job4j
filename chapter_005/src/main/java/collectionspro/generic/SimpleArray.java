@@ -51,10 +51,9 @@ public class SimpleArray<T> implements Iterable<T> {
      * @param index индекс элемента.
      */
     public void delete(int index) {
-        for (int i = index; i <= this.index; i++) {
-            this.objects[i] = this.objects[i + 1];
-        }
-        this.objects[this.index--] = null;
+        System.arraycopy(
+                this.objects, index + 1, this.objects,
+                index, this.index + 1 - index);
     }
 
     /**
