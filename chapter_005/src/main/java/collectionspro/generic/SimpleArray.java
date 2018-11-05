@@ -54,6 +54,7 @@ public class SimpleArray<T> implements Iterable<T> {
         System.arraycopy(
                 this.objects, index + 1, this.objects,
                 index, this.index + 1 - index);
+        this.objects[this.index--] = null;
     }
 
     /**
