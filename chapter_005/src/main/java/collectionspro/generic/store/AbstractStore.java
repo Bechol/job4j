@@ -41,7 +41,7 @@ public abstract class AbstractStore implements Store {
     @Override
     public boolean replace(String id, Base model) {
         boolean result = false;
-        if(checkId(id)) {
+        if (checkId(id)) {
             storeArray.set(Integer.valueOf(id), model);
             result = true;
         }
